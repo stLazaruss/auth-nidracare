@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auth API Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f9fa; color: #222; margin: 0; padding: 0; }
+    .container { max-width: 700px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 32px; }
+    h1 { color: #0070f3; }
+    code, pre { background: #f3f3f3; border-radius: 4px; padding: 2px 6px; }
+    .endpoint { margin-bottom: 32px; }
+    .method { font-weight: bold; color: #fff; background: #0070f3; border-radius: 4px; padding: 2px 8px; margin-right: 8px; }
+    .url { font-family: monospace; color: #0070f3; }
+    .example { background: #f3f3f3; border-radius: 4px; padding: 12px; margin: 8px 0; }
+    @media (max-width: 600px) { .container { padding: 12px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Auth API Documentation</h1>
+    <p>Base URL: <code>https://auth-nidracare.vercel.app</code></p>
+    <hr>
+
+    <div class="endpoint">
+      <span class="method" style="background:#28a745;">POST</span>
+      <span class="url">/api/register</span>
+      <p><strong>Register a new user</strong></p>
+      <p><b>Request Body (JSON):</b></p>
+      <pre class="example">{
+  "username": "yourusername",
+  "password": "yourpassword"
+}</pre>
+      <p><b>Success Response:</b></p>
+      <pre class="example">{
+  "message": "User registered",
+  "user": {
+    "id": 1,
+    "username": "yourusername"
+  }
+}</pre>
+      <p><b>Error Responses:</b></p>
+      <pre class="example">{
+  "error": "Username already exists"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <span class="method" style="background:#0070f3;">POST</span>
+      <span class="url">/api/login</span>
+      <p><strong>Login and get a JWT token</strong></p>
+      <p><b>Request Body (JSON):</b></p>
+      <pre class="example">{
+  "username": "yourusername",
+  "password": "yourpassword"
+}</pre>
+      <p><b>Success Response:</b></p>
+      <pre class="example">{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+}</pre>
+      <p><b>Error Responses:</b></p>
+      <pre class="example">{
+  "error": "Invalid username or password"
+}</pre>
+    </div>
+
+    <hr>
+    <h2>How to Test</h2>
+    <p>Use <a href="https://www.postman.com/" target="_blank">Postman</a> or <code>curl</code>:</p>
+    <pre class="example">curl -X POST https://auth-nidracare.vercel.app/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","password":"testpass123"}'
+</pre>
+    <pre class="example">curl -X POST https://auth-nidracare.vercel.app/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","password":"testpass123"}'
+</pre>
+    <p>For more endpoints or questions, contact the API maintainer.</p>
+  </div>
+</body>
+</html>
