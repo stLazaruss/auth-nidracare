@@ -7,11 +7,11 @@
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f9fa; color: #222; margin: 0; padding: 0; }
     .container { max-width: 700px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0001; padding: 32px; }
-    h1 { color: #0070f3; }
+    h1 { color: black; }
     code, pre { background: #f3f3f3; border-radius: 4px; padding: 2px 6px; }
     .endpoint { margin-bottom: 32px; }
-    .method { font-weight: bold; color: #fff; background: #0070f3; border-radius: 4px; padding: 2px 8px; margin-right: 8px; }
-    .url { font-family: monospace; color: #0070f3; }
+    .method { font-weight: bold; color: #facc15; background: #363636; border-radius: 4px; padding: 2px 8px; margin-right: 8px; }
+    .url { font-family: monospace; color: #000000; }
     .example { background: #f3f3f3; border-radius: 4px; padding: 12px; margin: 8px 0; }
     @media (max-width: 600px) { .container { padding: 12px; } }
   </style>
@@ -23,7 +23,7 @@
     <hr>
 
     <div class="endpoint">
-      <span class="method" style="background:#28a745;">POST</span>
+      <span class="method">POST</span>
       <span class="url">/api/register</span>
       <p><strong>Register a new user</strong></p>
       <p><b>Request Body (JSON):</b></p>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="endpoint">
-      <span class="method" style="background:#0070f3;">POST</span>
+      <span class="method">POST</span>
       <span class="url">/api/login</span>
       <p><strong>Login and get a JWT token</strong></p>
       <p><b>Request Body (JSON):</b></p>
