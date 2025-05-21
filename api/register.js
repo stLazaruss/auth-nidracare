@@ -12,6 +12,14 @@ export default async function handler(req, res) {
   const { username, password } = req.body;
   if (!username || !password) return res.status(400).json({ error: 'Missing fields' });
 
+  if (username.length < 3) {
+    return res.status(400).json({ error: 'Username must be at least 3 characters long' });
+  }
+
+  if (password.length < 6) {
+    return res.status(400).json({ error: 'Password must be at least 6 characters long' });
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
