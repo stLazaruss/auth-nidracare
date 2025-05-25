@@ -1,41 +1,86 @@
-# Serverless Auth API
+# Auth API Documentation
 
-A simple authentication API using serverless functions (Vercel/Netlify) and Neon Postgres.
+**Base URL:** `https://auth-nidracare.vercel.app`
 
-## Setup
+---
 
-1. **Clone the repo**
-2. **Install dependencies**
-   ```
-   npm install
-   ```
-3. **Create a Neon account and get your DATABASE_URL**
-   - Go to [neon.tech](https://neon.tech/)
-   - Create a project, copy the connection string.
-4. **Generate a JWT secret**
-   ```
-   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-   ```
-5. **Create a `.env` file**
-   ```
-   DATABASE_URL=your_neon_postgres_url
-   JWT_SECRET=your_jwt_secret
-   ```
-6. **Deploy to Vercel**
-   - Push to GitHub
-   - Import to Vercel
-   - Set environment variables in Vercel dashboard
+## POST `/api/register`
 
-## API Endpoints
+**Register a new user**
 
-### POST `/api/register`
-- Body: `{ "username": "string", "password": "string" }`
-- Response: `{ "message": "User registered", "user": { "id": ..., "username": ... } }`
+### Request Body (JSON):
+```json
+{
+  "username": "yourusername",
+  "password": "yourpassword"
+}
+```
 
-### POST `/api/login`
-- Body: `{ "username": "string", "password": "string" }`
-- Response: `{ "message": "Login successful", "token": "..." }`
+### Success Response:
+```json
+{
+  "message": "User registered",
+  "user": {
+    "id": 1,
+    "username": "yourusername"
+  }
+}
+```
 
-## Testing
+### Error Responses:
+```json
+{
+  "error": "Username already exists"
+}
+```
 
-Use Postman or curl to test the endpoints.
+---
+
+## POST `/api/login`
+
+**Login and get a JWT token**
+
+### Request Body (JSON):
+```json
+{
+  "username": "yourusername",
+  "password": "yourpassword"
+}
+```
+
+### Success Response:
+```json
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+}
+```
+
+### Error Responses:
+```json
+{
+  "error": "Invalid username or password"
+}
+```
+
+---
+
+## How to Test
+
+Use [Postman](https://www.postman.com/) or `curl`:
+
+### Register endpoint:
+```bash
+curl -X POST https://auth-nidracare.vercel.app/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","password":"testpass123"}'
+```
+
+### Login endpoint:
+```bash
+curl -X POST https://auth-nidracare.vercel.app/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","password":"testpass123"}'
+```
+
+For more endpoints or questions, contact the API maintainer.
